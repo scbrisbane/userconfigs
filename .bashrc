@@ -113,8 +113,11 @@ alias termservadmin='rdesktop -g workarea termservla.physics.ox.ac.uk -u brisban
 alias linuxts='ssh  -NL 13389:linuxts.physics.ox.ac.uk:3389 brisbane@pplxint6.physics.ox.ac.uk&& ssh  -NL 3350:linuxts.physics.ox.ac.uk:3350 brisbane@pplxint6.physics.ox.ac.uk;rdesktop -g workarea localhost:13389.physics.ox.ac.uk -u brisbanesu -d PHYSICS'
 eval $(keychain --eval --agents ssh -Q --quiet MyKey3)
 if ! ssh-add -L | grep MyKey3 >/dev/null 2>&1; then
-   ssh-add ~/.ssh/MyKey3 > /tmp/log
+   ssh-add ~/.ssh/MyKey3 > /tmp/log && ( $(( `date +%s` - 3600 )) -gt .lastgitpull  && git fetch && git pull && touch .lastgitpull )
+else 
+git fetch && git pull 
 fi
+
 SSH_ASKPASS=""
 HISTFILESIZE=4000000
 HISTSIZE=10000
@@ -132,3 +135,4 @@ export UBUNTUTOOLS_UBUNTU_MIRROR=http://archive.ubuntu.com/ubuntu
 alias buildppa='debuild -S -sa -k795191C7 && dput ppa:s-brisbane1/oxford-physics'
 alias uploadppa='dput ppa:s-brisbane1/oxford-physics '
 alias deploybzr='ssh root@cplxconfig1.physics.ox.ac.uk /usr/local/bin/checkout_masterfiles.sh'
+
