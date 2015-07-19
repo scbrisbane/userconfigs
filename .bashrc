@@ -111,22 +111,24 @@ alias pplxint6='ssh brisbane@pplxint6.physics.ox.ac.uk -X'
 export PATH=$PATH:/home/brisbanel/bin
 alias termservadmin='rdesktop -g workarea termservla.physics.ox.ac.uk -u brisbanesu -d PHYSICS'
 alias linuxts='ssh  -NL 13389:linuxts.physics.ox.ac.uk:3389 brisbane@pplxint6.physics.ox.ac.uk&& ssh  -NL 3350:linuxts.physics.ox.ac.uk:3350 brisbane@pplxint6.physics.ox.ac.uk;rdesktop -g workarea localhost:13389.physics.ox.ac.uk -u brisbanesu -d PHYSICS'
-#eval $(keychain --eval --agents ssh -Q --quiet nixonsecurity)
-
+eval $(keychain --eval --agents ssh -Q --quiet MyKey3)
 if ! ssh-add -L | grep MyKey3 >/dev/null 2>&1; then
    ssh-add ~/.ssh/MyKey3 > /tmp/log
 fi
-if ! klist ; then
-  if [ ! -f .ssh/mykeytab.decrypted ]; then
-  ~/bin/keytabcyphers.sh .ssh/mykeytab .ssh/MyKey3 decrypt $passw
-  chmod 600 .ssh/mykeytab.decrypted
-  fi
-  kinit -kt .ssh/mykeytab.decrypted \
-  brisbane@PHYSICS.OX.AC.UK 
-fi
 SSH_ASKPASS=""
-HISTFILESIZE=400000000
+HISTFILESIZE=4000000
 HISTSIZE=10000
 PROMPT_COMMAND="history -a"
 export HISTSIZE PROMPT_COMMAND
 shopt -s histappend
+declare 	-x AWS_ACCESS_KEY_ID="$( cat $HOME/.ssh/amazon-root-key.id )"
+declare 	-x AWS_ACCESS_KEY="$( cat $HOME/.ssh/amazon-root-key.id )"
+declare 	-x AWS_SECRET_ACCESS_KEY="$( cat $HOME/.ssh/amazon-root-key.key )"
+declare 	-x AWS_SECRET_KEY="$( cat $HOME/.ssh/amazon-root-key.key )"
+test -d /local/home/brisbane/.thunderbird || mkdir -p /local/home/brisbane/.thunderbird
+export DEBFULLNAME="Sean Brisbane"
+export DEBEMAIL="s.brisbane1@physics.ox.ac.uk"
+export UBUNTUTOOLS_UBUNTU_MIRROR=http://archive.ubuntu.com/ubuntu
+alias buildppa='debuild -S -sa -k795191C7 && dput ppa:s-brisbane1/oxford-physics'
+alias uploadppa='dput ppa:s-brisbane1/oxford-physics '
+alias deploybzr='ssh root@cplxconfig1.physics.ox.ac.uk /usr/local/bin/checkout_masterfiles.sh'
