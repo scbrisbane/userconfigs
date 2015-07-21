@@ -128,7 +128,7 @@ declare 	-x AWS_ACCESS_KEY_ID="$( cat $HOME/.ssh/amazon-root-key.id )"
 declare 	-x AWS_ACCESS_KEY="$( cat $HOME/.ssh/amazon-root-key.id )"
 declare 	-x AWS_SECRET_ACCESS_KEY="$( cat $HOME/.ssh/amazon-root-key.key )"
 declare 	-x AWS_SECRET_KEY="$( cat $HOME/.ssh/amazon-root-key.key )"
-test -d /local/home/brisbane/.thunderbird || mkdir -p /local/home/brisbane/.thunderbird
+test -d /local$HOME/.thunderbird || mkdir -p /local$HOME/.thunderbird
 export DEBFULLNAME="Sean Brisbane"
 export DEBEMAIL="s.brisbane1@physics.ox.ac.uk"
 export UBUNTUTOOLS_UBUNTU_MIRROR=http://archive.ubuntu.com/ubuntu
