@@ -106,7 +106,7 @@ alias pplxint6='ssh pplxint6.physics.ox.ac.uk -l brisbane '
 alias pplxint8='ssh pplxint8.physics.ox.ac.uk -l brisbane '
 alias setup-tunnel='ssh -fN -L 2225:163.1.246.45:22  brisbane@pplxint6.physics.ox.ac.uk'
 alias termserv='rdesktop -g workarea termserv.physics.ox.ac.uk -u brisbane -d PHYSICS'
-alias windowsdesktop='rdesktop -g workarea -s "mstsc /f /edit \\\\ppfs5.physics.ox.ac.uk\\particle\\brisbane\\ppws75-from-home.rdp" termservqc.physics.ox.ac.uk -u brisbane -d PHYSICS -f'
+alias windowsdesktop='rdesktop -g workarea termserv.physics.ox.ac.uk -u brisbane -d PHYSICS '
 alias pplxint6='ssh brisbane@pplxint6.physics.ox.ac.uk -X'
 export PATH=$PATH:/home/brisbanel/bin
 alias termservadmin='rdesktop -g workarea termservla.physics.ox.ac.uk -u brisbanesu -d PHYSICS'
@@ -136,4 +136,4 @@ export UBUNTUTOOLS_UBUNTU_MIRROR=http://archive.ubuntu.com/ubuntu
 alias buildppa='debuild -S -sa -k795191C7 && dput ppa:s-brisbane1/oxford-physics'
 alias uploadppa='dput ppa:s-brisbane1/oxford-physics '
 alias deploybzr='ssh root@cplxconfig1.physics.ox.ac.uk /usr/local/bin/checkout_masterfiles.sh'
-
+alias kinitb='kinit brisbane@PHYSICS.OX.AC.UK'
